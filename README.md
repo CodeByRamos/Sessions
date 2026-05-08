@@ -1,97 +1,159 @@
-🌊 Sessions
+````md
+<div align="center">
 
-Every session tells a story.
+# 🌊 Sessions
 
-Sessions é uma plataforma social feita por surfistas, para surfistas.
-O projeto mistura diário de surf, evolução pessoal, conexão entre surfistas locais e uma experiência visual cinematográfica inspirada no lifestyle do surf brasileiro.
+### *Every session tells a story.*
 
-✨ Sobre o projeto
+Uma plataforma social feita por surfistas, para surfistas.
 
-O Sessions nasceu da vontade de transformar cada surf session em algo memorável.
+<img src="https://img.shields.io/badge/status-development-0f172a?style=for-the-badge" />
+<img src="https://img.shields.io/badge/version-0.1-blue?style=for-the-badge" />
+<img src="https://img.shields.io/badge/license-MIT-38bdf8?style=for-the-badge" />
 
-Mais do que registrar ondas, a ideia é documentar:
+</div>
 
-evolução no surf
-experiências dentro d’água
-amizades
-rotina de praia
-emoções
-lifestyle
+---
 
-Tudo isso em uma plataforma moderna, estética e social.
+# 🏄 Sobre o projeto
 
-🌊 Funcionalidades
-📍 Registro de Sessions
-Praia
-Tamanho do mar
-Condições
-Vento
-Prancha usada
-Quantidade de ondas
-Relato pessoal
-Fotos e vídeos
-🏄 Perfil do Surfista
-Sessions registradas
-Estatísticas
-Evolução
-Badges
-Praias favoritas
-Nível de surf
-🧠 Sistema de Mood & Storytelling
+Sessions é uma mistura de:
+- Letterboxd
+- Strava
+- diário pessoal
+- lifestyle app
+- comunidade local de surf
 
-A plataforma transforma relatos em narrativas cinematográficas e cria uma identidade visual baseada no mar e no sentimento da session.
+O objetivo é transformar cada surf session em uma memória viva.
 
-🤝 Social
-Encontrar parceiros de surf
-Compartilhar sessions
-Feed social
-Comunidade local
-🏅 Sistema de Badges
+Mais do que registrar ondas, o Sessions documenta:
+- evolução
+- emoções
+- amizades
+- rotina
+- lifestyle
+- histórias dentro d’água
 
-Algumas badges especiais do projeto:
+Tudo com uma identidade visual cinematográfica inspirada no surf brasileiro.
 
-ZeroHoraCrew 🐧
-UARADEI 🌊
-Brazilian Storm 🇧🇷🌀
-🎨 Filosofia Visual
+---
+
+# ✨ Funcionalidades
+
+## 📍 Registro de Sessions
+
+Registre:
+- praia
+- tamanho do mar
+- vento
+- prancha usada
+- quantidade de ondas
+- manobras
+- relatos
+- fotos e vídeos
+
+---
+
+## 🤝 Social
+
+- Feed de sessions
+- Curtidas e comentários
+- Encontrar parceiros de surf
+- Comunidade local
+- Matchmaking entre surfistas
+
+---
+
+## 🧠 Storytelling & Mood
+
+A IA transforma relatos simples em narrativas cinematográficas.
+
+Cada session ganha:
+- identidade visual
+- mood único
+- estética baseada no mar do dia
+- memória emocional
+
+---
+
+## 🏅 Sistema de Badges
+
+Badges especiais do universo Sessions:
+
+| Badge | Descrição |
+|---|---|
+| 🐧 ZeroHoraCrew | Dawn patrol com os parceiros |
+| 🌊 UARADEI | Inspirada no canal Uaradei |
+| 🇧🇷🌀 Brazilian Storm | Surfando fora do país ou competindo |
+
+---
+
+# 🎨 Filosofia Visual
 
 Sessions é inspirado em:
+- surf brasileiro
+- cyber aesthetics
+- dawn patrol culture
+- fotografia analógica
+- mar frio de manhã cedo
+- cultura local de praia
 
-surf brasileiro
-cyber aesthetics
-dawn patrol culture
-fotografia analógica
-mar frio de manhã cedo
-comunidades locais de surf
-🚀 Stack
+---
 
-Atualmente o projeto utiliza:
+# 🚀 Stack
 
-React
-Next.js
-TypeScript
-TailwindCSS
-PostgreSQL
-Prisma
-Supabase/Firebase
-Node.js
-📌 Roadmap
- Sistema completo de autenticação
- Banco de dados real
- Upload de fotos e vídeos
- Feed social
- Mapa de surf sessions
- IA para storytelling
- Sistema de matchmaking entre surfistas
- App mobile
- Integração com previsão do mar
-🏄 Sobre o criador
+```bash
+Frontend:
+- React
+- Next.js
+- TypeScript
+- TailwindCSS
 
-Desenvolvido por um surfista iniciante apaixonado pela cultura do surf, tecnologia e construção de experiências digitais.
+Backend:
+- Node.js
+- Prisma
+- PostgreSQL
+
+Infra:
+- Supabase / Firebase
+````
+
+---
+
+# 📌 Roadmap
+
+* [ ] Sistema completo de autenticação
+* [ ] Banco de dados real
+* [ ] Upload de mídia
+* [ ] Feed social
+* [ ] Mapa de surf sessions
+* [ ] Sistema de badges
+* [ ] IA cinematográfica
+* [ ] Matchmaking de surfistas
+* [ ] Aplicativo mobile
+* [ ] Integração com previsão do mar
+
+---
+
+# 🌴 Sobre o criador
+
+Desenvolvido por um surfista iniciante apaixonado por:
+
+* tecnologia
+* design
+* cultura do surf
+* experiências digitais
 
 Local do Guarujá/SP.
-Tombo e Astúrias fazem parte da essência do projeto.
+Tombo, Astúrias e dawn patrol fazem parte da essência do projeto.
 
-📜 Licença
+---
 
-Este projeto está sob a licença MIT.
+<div align="center">
+
+### 🌊 Sessions
+
+*Built by surfers, for surfers.*
+
+</div>
+```
