@@ -1,4 +1,4 @@
-````md
+
 <div align="center">
 
 # 🌊 Sessions
@@ -7,9 +7,9 @@
 
 Uma plataforma social feita por surfistas, para surfistas.
 
-<img src="https://img.shields.io/badge/status-development-0f172a?style=for-the-badge" />
-<img src="https://img.shields.io/badge/version-0.1-blue?style=for-the-badge" />
-<img src="https://img.shields.io/badge/license-MIT-38bdf8?style=for-the-badge" />
+![Status](https://img.shields.io/badge/status-development-0f172a?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-0.1-2563eb?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-38bdf8?style=for-the-badge)
 
 </div>
 
@@ -76,15 +76,13 @@ Cada session ganha:
 
 ---
 
-## 🏅 Sistema de Badges
-
-Badges especiais do universo Sessions:
+# 🏅 Sistema de Badges
 
 | Badge | Descrição |
 |---|---|
-| 🐧 ZeroHoraCrew | Dawn patrol com os parceiros |
-| 🌊 UARADEI | Inspirada no canal Uaradei |
-| 🇧🇷🌀 Brazilian Storm | Surfando fora do país ou competindo |
+| 🐧 **ZeroHoraCrew** | Dawn patrol com os parceiros |
+| 🌊 **UARADEI** | Inspirada no canal Uaradei |
+| 🇧🇷🌀 **Brazilian Storm** | Surfando fora do país ou competindo |
 
 ---
 
@@ -102,58 +100,54 @@ Sessions é inspirado em:
 
 # 🚀 Stack
 
-```bash
-Frontend:
+## Frontend
 - React
 - Next.js
 - TypeScript
 - TailwindCSS
 
-Backend:
+## Backend
 - Node.js
 - Prisma
 - PostgreSQL
 
-Infra:
+## Infra
 - Supabase / Firebase
-````
 
 ---
 
 # 📌 Roadmap
 
-* [ ] Sistema completo de autenticação
-* [ ] Banco de dados real
-* [ ] Upload de mídia
-* [ ] Feed social
-* [ ] Mapa de surf sessions
-* [ ] Sistema de badges
-* [ ] IA cinematográfica
-* [ ] Matchmaking de surfistas
-* [ ] Aplicativo mobile
-* [ ] Integração com previsão do mar
+- [ ] Sistema completo de autenticação
+- [ ] Banco de dados real
+- [ ] Upload de mídia
+- [ ] Feed social
+- [ ] Mapa de surf sessions
+- [ ] Sistema de badges
+- [ ] IA cinematográfica
+- [ ] Matchmaking de surfistas
+- [ ] Aplicativo mobile
+- [ ] Integração com previsão do mar
 
 ---
 
 # 🌴 Sobre o criador
 
 Desenvolvido por um surfista iniciante apaixonado por:
+- tecnologia
+- design
+- cultura do surf
+- experiências digitais
 
-* tecnologia
-* design
-* cultura do surf
-* experiências digitais
-
-Local do Guarujá/SP.
+Local do Guarujá/SP.  
 Tombo, Astúrias e dawn patrol fazem parte da essência do projeto.
 
 ---
 
 <div align="center">
 
-### 🌊 Sessions
+## 🌊 Sessions
 
-*Built by surfers, for surfers.*
+### *Built by surfers, for surfers.*
 
 </div>
-```
