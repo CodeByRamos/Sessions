@@ -1,4 +1,21 @@
-export type BadgeRarity = "base" | "rare" | "epic" | "legendary";
+export type BadgeRarity =
+  | "base"
+  | "common"
+  | "uncommon"
+  | "rare"
+  | "epic"
+  | "legendary"
+  | "secret";
+export type BadgeCategory =
+  | "frequência"
+  | "praia"
+  | "horário"
+  | "evolução"
+  | "comunidade"
+  | "circuitos"
+  | "exploração"
+  | "especial";
+export type UserRole = "USER" | "ORGANIZER" | "MODERATOR" | "ADMIN";
 
 export type Badge = {
   id: string;
@@ -6,6 +23,10 @@ export type Badge = {
   description: string;
   icon: string;
   rarity: BadgeRarity;
+  category?: BadgeCategory;
+  isSecret?: boolean;
+  isAutomatic?: boolean;
+  isActive?: boolean;
   unlockRule?: string;
   unlocked?: boolean;
   earnedAt?: string;
@@ -18,6 +39,7 @@ export type User = {
   username: string;
   name: string;
   email?: string;
+  role: UserRole;
   avatarUrl: string;
   level: number;
   homeBeach: string;

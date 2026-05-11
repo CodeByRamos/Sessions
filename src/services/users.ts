@@ -15,3 +15,10 @@ export async function getFeaturedUser() {
 
   return toPublicUser(user, db);
 }
+
+export async function getUserById(userId: string) {
+  const db = await readDb();
+  const user = db.users.find((item) => item.id === userId);
+
+  return user ? toPublicUser(user, db) : null;
+}

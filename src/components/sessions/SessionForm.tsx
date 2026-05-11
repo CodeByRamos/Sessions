@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import {
   Camera,
   CheckCircle2,
@@ -14,7 +14,9 @@ import {
 import { useRouter } from "next/navigation";
 import type { Mood } from "@/types/session";
 import type { Spot } from "@/types/spot";
+import type { Competition } from "@/types/circuit";
 import { SessionPreview } from "@/components/sessions/SessionPreview";
+import { moodOptions } from "@/lib/moods";
 
 type SessionDraft = {
   title: string;
@@ -24,25 +26,27 @@ type SessionDraft = {
   wind: string;
   board: string;
   mood: Mood;
+  difficulty: "leve" | "moderada" | "difícil" | "casca grossa";
   rating: number;
   wavesCount: number;
   maneuvers: string;
   description: string;
   mediaUrl: string;
+  mediaUrls: string[];
   isPublic: boolean;
+  sessionType: "common" | "competition";
+  competitionId: string;
+  competitionCategory: string;
+  competitionResult: string;
+  competitionRound: string;
+  competitionScore: string;
+  competitionFeeling: string;
 };
 
-const moodOptions: Mood[] = [
-  "mágico",
-  "clássico",
-  "pesado",
-  "frustrante",
-  "limpo",
-  "calmo",
-  "evolução",
-];
-
-function createInitialDraft(initialSpotId: string): SessionDraft {
+function createInitialDraft(
+  initialSpotId: string,
+  initialCompetitionId = "",
+): SessionDraft {
   return {
   title: "",
   spotId: initialSpotId,
@@ -51,12 +55,21 @@ function createInitialDraft(initialSpotId: string): SessionDraft {
   wind: "",
   board: "",
   mood: "evolução",
+  difficulty: "moderada",
   rating: 4,
   wavesCount: 0,
   maneuvers: "",
   description: "",
   mediaUrl: "",
+  mediaUrls: [],
   isPublic: true,
+  sessionType: initialCompetitionId ? "competition" : "common",
+  competitionId: initialCompetitionId,
+  competitionCategory: "",
+  competitionResult: "",
+  competitionRound: "",
+  competitionScore: "",
+  competitionFeeling: "",
 };
 }
 
@@ -70,17 +83,36 @@ const steps = [
 
 type SessionFormProps = {
   spots: Spot[];
+  competitions: Competition[];
   initialSpotId?: string;
+  initialCompetitionId?: string;
 };
 
-export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
+export function SessionForm({
+  spots,
+  competitions,
+  initialSpotId,
+  initialCompetitionId,
+}: SessionFormProps) {
   const router = useRouter();
   const fallbackSpotId = initialSpotId ?? spots[0]?.id ?? "";
-  const [draft, setDraft] = useState<SessionDraft>(createInitialDraft(fallbackSpotId));
+  const initialCompetition = competitions.find(
+    (competition) => competition.id === initialCompetitionId,
+  );
+  const [draft, setDraft] = useState<SessionDraft>(
+    createInitialDraft(
+      initialCompetition?.spotId ?? fallbackSpotId,
+      initialCompetition?.id ?? "",
+    ),
+  );
   const [currentStep, setCurrentStep] = useState(0);
   const [submittedTitle, setSubmittedTitle] = useState("");
+  const [uploadingMedia, setUploadingMedia] = useState(false);
   const [error, setError] = useState("");
   const selectedSpot = spots.find((spot) => spot.id === draft.spotId);
+  const approvedCompetitions = competitions.filter(
+    (competition) => competition.status === "approved",
+  );
 
   const canSubmit = useMemo(
     () =>
@@ -89,7 +121,8 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
       draft.waveSize.trim().length > 0 &&
       draft.wind.trim().length > 0 &&
       draft.board.trim().length > 0 &&
-      draft.description.trim().length > 8,
+      draft.description.trim().length > 8 &&
+      (draft.sessionType === "common" || draft.competitionId.trim().length > 0),
     [draft],
   );
 
@@ -98,6 +131,79 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
     value: SessionDraft[Key],
   ) {
     setDraft((current) => ({ ...current, [key]: value }));
+  }
+
+  async function uploadSessionImage(file: File) {
+    const dataUrl = await new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () =>
+        typeof reader.result === "string"
+          ? resolve(reader.result)
+          : reject(new Error("Imagem inválida."));
+      reader.onerror = () => reject(new Error("Imagem inválida."));
+      reader.readAsDataURL(file);
+    });
+
+    const response = await fetch("/api/media/upload", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ file: dataUrl, folder: "sessions" }),
+    });
+    const data = (await response.json()) as { url?: string; error?: string };
+
+    if (!response.ok || !data.url) {
+      throw new Error(data.error ?? "Não foi possível enviar a imagem. Tente novamente.");
+    }
+
+    return data.url;
+  }
+
+  async function handleMediaFile(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    setError("");
+
+    if (!file) {
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      setError("Envie apenas imagens válidas para a session.");
+      event.target.value = "";
+      return;
+    }
+
+    if (file.size > 8 * 1024 * 1024) {
+      setError("A imagem da session precisa ter no máximo 8MB.");
+      event.target.value = "";
+      return;
+    }
+
+    const previewUrl = URL.createObjectURL(file);
+    setDraft((current) => ({
+      ...current,
+      mediaUrl: previewUrl,
+      mediaUrls: [previewUrl],
+    }));
+    setUploadingMedia(true);
+
+    try {
+      const uploadedUrl = await uploadSessionImage(file);
+      setDraft((current) => ({
+        ...current,
+        mediaUrl: uploadedUrl,
+        mediaUrls: [uploadedUrl],
+      }));
+    } catch (uploadError) {
+      setError(
+        uploadError instanceof Error
+          ? uploadError.message
+          : "Não foi possível enviar a imagem. Tente novamente.",
+      );
+      setDraft((current) => ({ ...current, mediaUrl: "", mediaUrls: [] }));
+    } finally {
+      setUploadingMedia(false);
+      event.target.value = "";
+    }
   }
 
   function isStepReady(index: number) {
@@ -113,7 +219,8 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
       return (
         draft.title.trim().length > 2 &&
         draft.board.trim().length > 0 &&
-        draft.description.trim().length > 8
+        draft.description.trim().length > 8 &&
+        (draft.sessionType === "common" || draft.competitionId.trim().length > 0)
       );
     }
 
@@ -222,6 +329,31 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
                   ))}
                 </select>
               </label>
+              <div className="space-y-2 sm:col-span-2">
+                <span className="label">Tipo de registro</span>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {[
+                    ["common", "Session comum", "treino, free surf ou diário pessoal"],
+                    ["competition", "Session de campeonato", "bateria, resultado e circuito"],
+                  ].map(([value, title, description]) => (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() =>
+                        updateDraft("sessionType", value as SessionDraft["sessionType"])
+                      }
+                      className={`rounded-2xl border p-4 text-left transition ${
+                        draft.sessionType === value
+                          ? "border-tide-300/35 bg-tide-300/12 text-tide-300"
+                          : "border-white/10 bg-white/[0.035] text-sand-100/64"
+                      }`}
+                    >
+                      <span className="block font-black text-white">{title}</span>
+                      <span className="mt-1 block text-sm">{description}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
               <label className="space-y-2">
                 <span className="label">Data</span>
                 <input
@@ -261,8 +393,90 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
                   value={draft.title}
                   onChange={(event) => updateDraft("title", event.target.value)}
                   placeholder="Ex: Zero hora com linha limpa"
+                  maxLength={60}
                 />
               </label>
+              {draft.sessionType === "competition" ? (
+                <>
+                  <label className="space-y-2 sm:col-span-2">
+                    <span className="label">Circuito aprovado</span>
+                    <select
+                      className="field"
+                      value={draft.competitionId}
+                      onChange={(event) =>
+                        updateDraft("competitionId", event.target.value)
+                      }
+                    >
+                      <option value="">Escolha um campeonato</option>
+                      {approvedCompetitions.map((competition) => (
+                        <option key={competition.id} value={competition.id}>
+                          {competition.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="space-y-2">
+                    <span className="label">Categoria</span>
+                    <input
+                      className="field"
+                      value={draft.competitionCategory}
+                      onChange={(event) =>
+                        updateDraft("competitionCategory", event.target.value)
+                      }
+                      placeholder="Open, iniciante, longboard..."
+                      maxLength={60}
+                    />
+                  </label>
+                  <label className="space-y-2">
+                    <span className="label">Resultado / colocação</span>
+                    <input
+                      className="field"
+                      value={draft.competitionResult}
+                      onChange={(event) =>
+                        updateDraft("competitionResult", event.target.value)
+                      }
+                      placeholder="3º lugar, semifinal, campeão..."
+                      maxLength={60}
+                    />
+                  </label>
+                  <label className="space-y-2">
+                    <span className="label">Rodada / fase</span>
+                    <input
+                      className="field"
+                      value={draft.competitionRound}
+                      onChange={(event) =>
+                        updateDraft("competitionRound", event.target.value)
+                      }
+                      placeholder="Round 1, final..."
+                      maxLength={60}
+                    />
+                  </label>
+                  <label className="space-y-2">
+                    <span className="label">Pontuação</span>
+                    <input
+                      className="field"
+                      value={draft.competitionScore}
+                      onChange={(event) =>
+                        updateDraft("competitionScore", event.target.value)
+                      }
+                      placeholder="12.40"
+                      maxLength={40}
+                    />
+                  </label>
+                  <label className="space-y-2 sm:col-span-2">
+                    <span className="label">Sensação durante a bateria</span>
+                    <textarea
+                      className="field min-h-24 resize-y leading-6"
+                      value={draft.competitionFeeling}
+                      onChange={(event) =>
+                        updateDraft("competitionFeeling", event.target.value)
+                      }
+                      placeholder="Frio na barriga, foco, pressão, presença..."
+                      maxLength={280}
+                    />
+                  </label>
+                </>
+              ) : null}
               <label className="space-y-2">
                 <span className="label">Prancha</span>
                 <input
@@ -270,6 +484,7 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
                   value={draft.board}
                   onChange={(event) => updateDraft("board", event.target.value)}
                   placeholder="6'0 Fish Twin"
+                  maxLength={60}
                 />
               </label>
               <label className="space-y-2">
@@ -282,6 +497,25 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
                   {moodOptions.map((mood) => (
                     <option key={mood} value={mood}>
                       {mood}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="space-y-2">
+                <span className="label">Dificuldade</span>
+                <select
+                  className="field"
+                  value={draft.difficulty}
+                  onChange={(event) =>
+                    updateDraft(
+                      "difficulty",
+                      event.target.value as SessionDraft["difficulty"],
+                    )
+                  }
+                >
+                  {["leve", "moderada", "difícil", "casca grossa"].map((difficulty) => (
+                    <option key={difficulty} value={difficulty}>
+                      {difficulty}
                     </option>
                   ))}
                 </select>
@@ -316,6 +550,7 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
                   value={draft.maneuvers}
                   onChange={(event) => updateDraft("maneuvers", event.target.value)}
                   placeholder="drop, base, rasgada, trim..."
+                  maxLength={140}
                 />
               </label>
               <label className="space-y-2 sm:col-span-2">
@@ -325,7 +560,11 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
                   value={draft.description}
                   onChange={(event) => updateDraft("description", event.target.value)}
                   placeholder="Como foi a remada, o crowd, o drop e a sensação da session?"
+                  maxLength={2000}
                 />
+                <span className="block text-right text-xs text-sand-300/52">
+                  {draft.description.length}/2000
+                </span>
               </label>
             </div>
           ) : null}
@@ -337,20 +576,37 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
               </div>
               <h3 className="mt-5 text-2xl font-black text-white">Foto da session</h3>
               <p className="mt-3 max-w-xl text-sm leading-6 text-sand-100/64">
-                A área de upload já está reservada para receber imagens. Por enquanto,
-                siga com o registro e use a capa cinematográfica mockada.
+                Envie uma imagem leve para usar como capa da memória.
               </p>
-              <button type="button" disabled className="secondary-button mt-6 opacity-55">
+              <label className="secondary-button mt-6 cursor-pointer">
                 <Camera className="h-4 w-4" />
-                adicionar foto em breve
-              </button>
+                adicionar foto
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="sr-only"
+                  onChange={handleMediaFile}
+                />
+              </label>
+              {draft.mediaUrl ? (
+                <div
+                  className="mt-5 min-h-60 rounded-[18px] border border-white/10 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `linear-gradient(180deg, transparent, rgba(6,16,18,0.36)), url(${draft.mediaUrl})`,
+                  }}
+                />
+              ) : null}
               <label className="mt-5 block space-y-2">
                 <span className="label">URL de mídia opcional</span>
                 <input
                   className="field"
                   value={draft.mediaUrl}
-                  onChange={(event) => updateDraft("mediaUrl", event.target.value)}
+                  onChange={(event) => {
+                    updateDraft("mediaUrl", event.target.value);
+                    updateDraft("mediaUrls", event.target.value ? [event.target.value] : []);
+                  }}
                   placeholder="https://..."
+                  maxLength={2000}
                 />
               </label>
             </div>
@@ -365,6 +621,14 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
                   ["Vento", draft.wind || "sem vento"],
                   ["Prancha", draft.board || "sem prancha"],
                   ["Mood", draft.mood],
+                  ["Dificuldade", draft.difficulty],
+                  ["Tipo", draft.sessionType === "competition" ? "campeonato" : "comum"],
+                  [
+                    "Circuito",
+                    approvedCompetitions.find(
+                      (competition) => competition.id === draft.competitionId,
+                    )?.name ?? "sem circuito",
+                  ],
                   ["Ondas", String(draft.wavesCount)],
                   ["Manobras", draft.maneuvers || "sem foco"],
                 ].map(([label, value]) => (
@@ -412,19 +676,19 @@ export function SessionForm({ spots, initialSpotId }: SessionFormProps) {
 
               <button
                 type="submit"
-                disabled={!canSubmit}
+                disabled={!canSubmit || uploadingMedia}
                 className="primary-button w-full disabled:cursor-not-allowed disabled:opacity-45"
               >
                 <Send className="h-4 w-4" />
-                publicar session
+                {uploadingMedia ? "enviando imagem..." : "publicar session"}
               </button>
 
               {submittedTitle ? (
                 <div className="flex items-start gap-3 rounded-2xl border border-tide-300/25 bg-tide-300/10 p-4 text-sm text-tide-300">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" />
                   <p>
-                    <span className="font-black">Session simulada:</span>{" "}
-                    {submittedTitle}. Sua entrada ficou pronta no rascunho local.
+                    <span className="font-black">Session criada:</span>{" "}
+                    {submittedTitle}.
                   </p>
                 </div>
               ) : null}

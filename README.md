@@ -1,153 +1,56 @@
+# Sessions
 
-<div align="center">
+Sessions é uma plataforma social de surf: diário cinematográfico, feed da comunidade, evolução por badges, Crew para combinar quedas, Circuitos para eventos e mapa dos picos surfados.
 
-# 🌊 Sessions
+## Stack
 
-### *Every session tells a story.*
+- Frontend: Next.js App Router, TypeScript e Tailwind CSS.
+- Runtime atual: API Routes do Next.js.
+- Banco: PostgreSQL via `pg`.
+- Upload: Cloudinary unsigned upload.
+- Mapa: Mapbox GL JS.
+- Backend separado: FastAPI iniciado em `backend/`.
 
-Uma plataforma social feita por surfistas, para surfistas.
+## Rodar localmente
 
-![Status](https://img.shields.io/badge/status-development-0f172a?style=for-the-badge)
-![Version](https://img.shields.io/badge/version-0.1-2563eb?style=for-the-badge)
-![License](https://img.shields.io/badge/license-MIT-38bdf8?style=for-the-badge)
+```bash
+npm install
+npm run dev
+```
 
-</div>
+Abra `http://localhost:3000`.
 
----
+## Banco
 
-# 🏄 Sobre o projeto
+Com Postgres configurado:
 
-Sessions é uma mistura de:
-- Letterboxd
-- Strava
-- diário pessoal
-- lifestyle app
-- comunidade local de surf
+```bash
+npm run db:seed
+```
 
-O objetivo é transformar cada surf session em uma memória viva.
+O runtime usa Postgres quando `DATABASE_URL` existe. Em desenvolvimento, se essa variável não estiver configurada, o app usa `data/sessions-db.json` como fallback local. Em produção, configure `DATABASE_URL`.
 
-Mais do que registrar ondas, o Sessions documenta:
-- evolução
-- emoções
-- amizades
-- rotina
-- lifestyle
-- histórias dentro d’água
+## Variáveis
 
-Tudo com uma identidade visual cinematográfica inspirada no surf brasileiro.
+Veja `.env.example`.
 
----
+```bash
+DATABASE_URL=postgresql://user:password@localhost:5432/sessions
+DATABASE_SSL=false
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_UPLOAD_PRESET=
+NEXT_PUBLIC_MAPBOX_TOKEN=
+SESSIONS_BASE_URL=http://127.0.0.1:3000
+```
 
-# ✨ Funcionalidades
+## Comandos úteis
 
-## 📍 Registro de Sessions
+```bash
+npm run typecheck
+npm run build
+npm run test:smoke
+```
 
-Registre:
-- praia
-- tamanho do mar
-- vento
-- prancha usada
-- quantidade de ondas
-- manobras
-- relatos
-- fotos e vídeos
+## FastAPI
 
----
-
-## 🤝 Social
-
-- Feed de sessions
-- Curtidas e comentários
-- Encontrar parceiros de surf
-- Comunidade local
-- Matchmaking entre surfistas
-
----
-
-## 🧠 Storytelling & Mood
-
-A IA transforma relatos simples em narrativas cinematográficas.
-
-Cada session ganha:
-- identidade visual
-- mood único
-- estética baseada no mar do dia
-- memória emocional
-
----
-
-# 🏅 Sistema de Badges
-
-| Badge | Descrição |
-|---|---|
-| 🐧 **ZeroHoraCrew** | Dawn patrol com os parceiros |
-| 🌊 **UARADEI** | Inspirada no canal Uaradei |
-| 🇧🇷🌀 **Brazilian Storm** | Surfando fora do país ou competindo |
-
----
-
-# 🎨 Filosofia Visual
-
-Sessions é inspirado em:
-- surf brasileiro
-- cyber aesthetics
-- dawn patrol culture
-- fotografia analógica
-- mar frio de manhã cedo
-- cultura local de praia
-
----
-
-# 🚀 Stack
-
-## Frontend
-- React
-- Next.js
-- TypeScript
-- TailwindCSS
-
-## Backend
-- Node.js
-- Prisma
-- PostgreSQL
-
-## Infra
-- Supabase / Firebase
-
----
-
-# 📌 Roadmap
-
-- [ ] Sistema completo de autenticação
-- [ ] Banco de dados real
-- [ ] Upload de mídia
-- [ ] Feed social
-- [ ] Mapa de surf sessions
-- [ ] Sistema de badges
-- [ ] IA cinematográfica
-- [ ] Matchmaking de surfistas
-- [ ] Aplicativo mobile
-- [ ] Integração com previsão do mar
-
----
-
-# 🌴 Sobre o criador
-
-Desenvolvido por um surfista iniciante apaixonado por:
-- tecnologia
-- design
-- cultura do surf
-- experiências digitais
-
-Local do Guarujá/SP.  
-Tombo, Astúrias e dawn patrol fazem parte da essência do projeto.
-
----
-
-<div align="center">
-
-## 🌊 Sessions
-
-### *Built by surfers, for surfers.*
-
-</div>
+A base de backend separado está em `backend/`. O frontend ainda usa API Routes para manter o produto navegável durante a migração gradual.

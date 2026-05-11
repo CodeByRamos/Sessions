@@ -4,17 +4,20 @@ import {
   Heart,
   MessageCircle,
   Star,
+  Trophy,
   Waves,
   Wind,
 } from "lucide-react";
 import Link from "next/link";
 import type { Session } from "@/types/session";
+import type { Badge } from "@/types/user";
 import { MoodTag } from "@/components/sessions/MoodTag";
 
 type SessionCardProps = {
   session: Session;
   authorName?: string;
   authorAvatarUrl?: string;
+  badges?: Badge[];
   compact?: boolean;
 };
 
@@ -30,6 +33,7 @@ export function SessionCard({
   session,
   authorName,
   authorAvatarUrl,
+  badges = [],
   compact = false,
 }: SessionCardProps) {
   const imageClass = compact ? "h-48" : "h-64 sm:h-72";
@@ -46,8 +50,14 @@ export function SessionCard({
         }}
       >
         <div className="absolute left-4 top-4">
-          <MoodTag mood={session.mood} />
+          <MoodTag mood={session.mood} showIcon />
         </div>
+        {session.sessionType === "competition" ? (
+          <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-sun-400/25 bg-black/40 px-3 py-1.5 text-xs font-black uppercase tracking-[0.14em] text-sun-400 backdrop-blur">
+            <Trophy className="h-4 w-4" />
+            campeonato
+          </div>
+        ) : null}
         <div className="absolute right-4 top-4 flex items-center gap-1 rounded-full border border-white/10 bg-black/35 px-3 py-1.5 text-sm font-black text-sun-400 backdrop-blur">
           <Star className="h-4 w-4 fill-current" />
           {session.rating}
@@ -109,6 +119,19 @@ export function SessionCard({
           <p className="line-clamp-3 text-sm leading-6 text-sand-100/70">
             {session.cinematicText || session.description}
           </p>
+        ) : null}
+
+        {badges.length ? (
+          <div className="flex flex-wrap gap-2">
+            {badges.slice(0, 3).map((badge) => (
+              <span
+                key={badge.id}
+                className="rounded-full border border-sun-400/20 bg-sun-400/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-sun-400"
+              >
+                {badge.name}
+              </span>
+            ))}
+          </div>
         ) : null}
 
         <div className="flex items-center justify-between soft-divider pt-4 text-xs font-black uppercase tracking-[0.14em] text-sand-300/62">

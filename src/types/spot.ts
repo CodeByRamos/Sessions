@@ -9,4 +9,6 @@ export type Spot = {
   bestConditions: string;
   waveType: string;
   imageUrl: string;
+  latitude?: number;
+  longitude?: number;
 };

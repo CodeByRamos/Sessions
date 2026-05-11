@@ -1,38 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getRequestUser } from "@/lib/auth";
+import { evaluateBadgesForUser } from "@/lib/badges";
 import { createId, readDb, writeDb } from "@/lib/db";
+import { moodOptions } from "@/lib/moods";
+import { canModerate } from "@/lib/roles";
+import { isPastOrToday, isValidUrl, limits, trimLimit } from "@/lib/validation";
 import type { Mood, Session } from "@/types/session";
 
-const moods: Mood[] = [
-  "mágico",
-  "clássico",
-  "pesado",
-  "frustrante",
-  "limpo",
-  "calmo",
-  "evolução",
-];
-
-function unlockBadge(
-  db: Awaited<ReturnType<typeof readDb>>,
-  userId: string,
-  badgeId: string,
-) {
-  if (db.userBadges.some((badge) => badge.userId === userId && badge.badgeId === badgeId)) {
-    return;
-  }
-
-  db.userBadges.push({
-    id: createId("user-badge"),
-    userId,
-    badgeId,
-    unlockedAt: new Date().toISOString(),
-  });
-}
-
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const user = await getRequestUser(request);
   const db = await readDb();
-  return NextResponse.json({ sessions: db.sessions });
+  const sessions = db.sessions.filter((session) => {
+    if (session.isPublic) {
+      return true;
+    }
+
+    return Boolean(user && (session.userId === user.id || canModerate(user.role)));
+  });
+
+  return NextResponse.json({ sessions });
 }
 
 export async function POST(request: NextRequest) {
@@ -53,14 +39,23 @@ export async function POST(request: NextRequest) {
     wind?: string;
     board?: string;
     mood?: Mood;
+    difficulty?: Session["difficulty"];
     rating?: number;
     wavesCount?: number;
     maneuvers?: string;
     description?: string;
     mediaUrl?: string;
+    mediaUrls?: string[];
     isPublic?: boolean;
     country?: string;
     isCompetition?: boolean;
+    sessionType?: "common" | "competition" | "crew";
+    competitionId?: string;
+    competitionCategory?: string;
+    competitionResult?: string;
+    competitionRound?: string;
+    competitionScore?: string;
+    competitionFeeling?: string;
   };
   const db = await readDb();
   const spot = db.spots.find((item) => item.id === body.spotId);
@@ -76,7 +71,14 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const description = body.description?.trim() ?? "";
+  if (!isPastOrToday(body.date)) {
+    return NextResponse.json(
+      { error: "Sessions realizadas precisam ter data de hoje ou do passado." },
+      { status: 400 },
+    );
+  }
+
+  const description = trimLimit(body.description, limits.longText);
 
   if (description.length < 12) {
     return NextResponse.json(
@@ -85,25 +87,81 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const mood = body.mood && moods.includes(body.mood) ? body.mood : "evolução";
+  const mood = body.mood && moodOptions.includes(body.mood) ? body.mood : "evolução";
   const wavesCount = Math.max(0, Number(body.wavesCount ?? 0));
-  const mediaUrls = body.mediaUrl?.trim() ? [body.mediaUrl.trim()] : [spot.imageUrl];
-  const board = body.board.trim();
-  const wind = body.wind.trim();
+  const rawMediaUrls = [
+    ...(Array.isArray(body.mediaUrls) ? body.mediaUrls : []),
+    body.mediaUrl,
+  ]
+    .map((value) => trimLimit(value, Math.max(limits.url, limits.longText)))
+    .filter(Boolean)
+    .slice(0, 4);
+
+  for (const mediaUrl of rawMediaUrls) {
+    if (!isValidUrl(mediaUrl)) {
+      return NextResponse.json(
+        { error: "Use uma imagem válida." },
+        { status: 400 },
+      );
+    }
+  }
+
+  const competition = body.competitionId
+    ? db.competitions.find((item) => item.id === body.competitionId)
+    : undefined;
+  const isCompetitionSession = body.sessionType === "competition" || Boolean(body.isCompetition);
+
+  if (isCompetitionSession) {
+    if (!competition) {
+      return NextResponse.json(
+        { error: "Escolha um Circuito aprovado para a session de campeonato." },
+        { status: 400 },
+      );
+    }
+
+    if (competition.status !== "approved") {
+      return NextResponse.json(
+        { error: "O Circuito precisa estar aprovado para receber sessions." },
+        { status: 400 },
+      );
+    }
+  }
+
+  const mediaUrls = rawMediaUrls.length ? rawMediaUrls : [spot.imageUrl];
+  const board = trimLimit(body.board, 60);
+  const wind = trimLimit(body.wind, 80);
+  const title = trimLimit(body.title, limits.sessionTitle);
+  const difficultyOptions: Array<NonNullable<Session["difficulty"]>> = [
+    "leve",
+    "moderada",
+    "difícil",
+    "casca grossa",
+  ];
+  const difficulty = difficultyOptions.includes(body.difficulty ?? "moderada")
+    ? body.difficulty
+    : "moderada";
   const now = new Date().toISOString();
   const session: Session = {
     id: createId("session"),
     userId: user.id,
     spotId: spot.id,
-    title: body.title?.trim() || `${spot.name} · ${mood}`,
+    sessionType: isCompetitionSession ? "competition" : "common",
+    competitionId: competition?.id,
+    competitionCategory: trimLimit(body.competitionCategory, 60),
+    competitionResult: trimLimit(body.competitionResult, 60),
+    competitionRound: trimLimit(body.competitionRound, 60),
+    competitionScore: trimLimit(body.competitionScore, 40),
+    competitionFeeling: trimLimit(body.competitionFeeling, limits.shortDescription),
+    title: title || `${spot.name} · ${mood}`,
     beach: spot.name,
     date: body.date,
-    waveSize: body.waveSize.trim(),
+    waveSize: trimLimit(body.waveSize, 60),
     wind,
     windCondition: wind,
     board,
     boardUsed: board,
     mood,
+    difficulty,
     rating: Math.min(Math.max(Number(body.rating ?? 4), 1), 5),
     wavesCount,
     wavesCaught: wavesCount,
@@ -117,45 +175,19 @@ export async function POST(request: NextRequest) {
           .split(",")
           .map((maneuver) => maneuver.trim())
           .filter(Boolean)
+          .slice(0, 12)
       : [],
     isPublic: body.isPublic ?? true,
     country: body.country?.trim() || "Brasil",
-    isCompetition: Boolean(body.isCompetition),
+    isCompetition: isCompetitionSession,
     createdAt: now,
+    updatedAt: now,
   };
 
   db.sessions.unshift(session);
-
-  const userSessions = db.sessions.filter((item) => item.userId === user.id);
-  unlockBadge(db, user.id, "primeira-session");
-
-  if (wavesCount > 0) {
-    unlockBadge(db, user.id, "primeiro-drop");
-  }
-
-  if (description.toLowerCase().includes("evolu") || mood === "evolução") {
-    unlockBadge(db, user.id, "primeira-onda-em-pe");
-  }
-
-  if (userSessions.length >= 7) {
-    unlockBadge(db, user.id, "7-dias-surfando");
-  }
-
-  const emotionalSessions = userSessions.filter((item) => (item.description ?? "").length >= 140);
-  if (description.length >= 180 || emotionalSessions.length >= 7) {
-    unlockBadge(db, user.id, "uaradei");
-  }
-
-  const spotsSurf = new Set(userSessions.map((item) => item.spotId));
-  if (spotsSurf.size > 1) {
-    unlockBadge(db, user.id, "novo-pico");
-  }
-
-  if ((session.country ?? "Brasil").toLowerCase() !== "brasil" || session.isCompetition) {
-    unlockBadge(db, user.id, "brazilian-storm");
-  }
+  const unlockedBadgeIds = evaluateBadgesForUser(db, user.id, session, competition);
 
   await writeDb(db);
 
-  return NextResponse.json({ session }, { status: 201 });
+  return NextResponse.json({ session, unlockedBadgeIds }, { status: 201 });
 }

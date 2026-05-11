@@ -1,16 +1,22 @@
 import { SessionForm } from "@/components/sessions/SessionForm";
+import { listApprovedCompetitions } from "@/services/circuits";
 import { listSpots } from "@/services/spots";
 import { requireUser } from "@/services/users";
 
 type NewSessionPageProps = {
   searchParams: Promise<{
     spot?: string;
+    competition?: string;
   }>;
 };
 
 export default async function NewSessionPage({ searchParams }: NewSessionPageProps) {
   await requireUser();
-  const [{ spot }, spots] = await Promise.all([searchParams, listSpots()]);
+  const [{ spot, competition }, spots, competitions] = await Promise.all([
+    searchParams,
+    listSpots(),
+    listApprovedCompetitions(),
+  ]);
 
   return (
     <div className="page-shell space-y-6 fade-in">
@@ -25,7 +31,12 @@ export default async function NewSessionPage({ searchParams }: NewSessionPagePro
         </p>
       </header>
 
-      <SessionForm spots={spots} initialSpotId={spot} />
+      <SessionForm
+        spots={spots}
+        competitions={competitions}
+        initialSpotId={spot}
+        initialCompetitionId={competition}
+      />
     </div>
   );
 }

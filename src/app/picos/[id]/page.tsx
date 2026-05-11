@@ -59,7 +59,7 @@ export default async function SpotDetailPage({ params }: SpotDetailPageProps) {
           <SectionTitle
             eyebrow="sessions do pico"
             title="Histórico registrado"
-            description="Use os filtros como estrutura de produto. A busca real entra quando o backend crescer."
+            description="Encontre sessions por condição, prancha ou sentimento e entenda melhor o ritmo desse pico."
           />
           <div className="surface rounded-[18px] p-4">
             <div className="flex flex-wrap gap-2">

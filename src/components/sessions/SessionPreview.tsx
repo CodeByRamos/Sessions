@@ -39,7 +39,7 @@ export function SessionPreview({
         }}
       >
         <div className="absolute left-4 top-4">
-          <MoodTag mood={mood} />
+          <MoodTag mood={mood} showIcon />
         </div>
         <div className="absolute right-4 top-4 flex items-center gap-1 rounded-full border border-white/10 bg-black/35 px-3 py-1.5 text-sm font-black text-sun-400 backdrop-blur">
           <Star className="h-4 w-4 fill-current" />
@@ -100,7 +100,7 @@ export function SessionPreview({
 
         <div className="flex items-center gap-2 rounded-2xl border border-dashed border-white/15 bg-ink-950/45 p-3 text-sm text-sand-100/62">
           <Camera className="h-4 w-4 text-tide-300" />
-          fotos entram na próxima etapa de upload
+          imagem da memória
         </div>
       </div>
     </aside>

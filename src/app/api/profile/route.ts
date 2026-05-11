@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { getRequestUser } from "@/lib/auth";
 import { readDb, toPublicUser, writeDb } from "@/lib/db";
 import type { SkillLevel } from "@/types/user";
+import {
+  isValidUrl,
+  limits,
+  trimLimit,
+} from "@/lib/validation";
 
 const skillLevels: SkillLevel[] = [
   "iniciante",
@@ -32,20 +37,35 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: "Usuário não encontrado." }, { status: 404 });
   }
 
-  const name = body.name?.trim();
+  const name = trimLimit(body.name, 80);
 
   if (!name) {
     return NextResponse.json({ error: "Nome é obrigatório." }, { status: 400 });
   }
 
   user.name = name;
-  user.avatarUrl = body.avatarUrl?.trim() || user.avatarUrl;
-  user.bio = body.bio?.trim() || "";
-  user.homeBeach = body.homeBeach?.trim() || "Praia do Tombo";
+  const avatarUrl = body.avatarUrl?.trim() ?? "";
+  if (avatarUrl) {
+    const isAllowedAvatar = db.avatarOptions.some((avatar) => avatar.imageUrl === avatarUrl);
+    const isExternalImage = isValidUrl(avatarUrl);
+
+    if (!isAllowedAvatar && !isExternalImage) {
+      return NextResponse.json(
+        { error: "Use um avatar válido." },
+        { status: 400 },
+      );
+    }
+
+    user.avatarUrl = avatarUrl;
+  } else {
+    user.avatarUrl = db.avatarOptions[0]?.imageUrl ?? user.avatarUrl;
+  }
+  user.bio = trimLimit(body.bio, limits.shortDescription);
+  user.homeBeach = trimLimit(body.homeBeach, limits.beachName) || "Praia do Tombo";
   user.skillLevel = skillLevels.includes(body.skillLevel as SkillLevel)
     ? body.skillLevel
     : "iniciante";
-  user.favoriteBoard = body.favoriteBoard?.trim() || "Prancha favorita";
+  user.favoriteBoard = trimLimit(body.favoriteBoard, 80) || "Prancha favorita";
   user.mainBoard = user.favoriteBoard;
   user.updatedAt = new Date().toISOString();
 

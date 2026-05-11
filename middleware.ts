@@ -1,6 +1,14 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-const protectedPrefixes = ["/profile", "/sessions/new"];
+const protectedPrefixes = [
+  "/profile",
+  "/sessions/new",
+  "/sessions/",
+  "/my-sessions",
+  "/stats",
+  "/map",
+  "/admin",
+];
 const sessionCookie = "sessions_token";
 
 export function middleware(request: NextRequest) {
@@ -23,5 +31,12 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/profile/:path*", "/sessions/new/:path*"],
+  matcher: [
+    "/profile/:path*",
+    "/sessions/:path*",
+    "/my-sessions/:path*",
+    "/stats/:path*",
+    "/map/:path*",
+    "/admin/:path*",
+  ],
 };

@@ -50,7 +50,7 @@ export default async function BadgesPage() {
         />
         <div className="grid gap-4 md:grid-cols-3">
           {featured.map((badge) => (
-            <BadgeCard key={badge.id} badge={badge} />
+            <BadgeCard key={badge.id} badge={badge} href={`/badges/${badge.id}`} />
           ))}
         </div>
       </section>
@@ -63,7 +63,7 @@ export default async function BadgesPage() {
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {badges.map((badge) => (
-            <BadgeCard key={badge.id} badge={badge} />
+            <BadgeCard key={badge.id} badge={badge} href={`/badges/${badge.id}`} />
           ))}
         </div>
       </section>

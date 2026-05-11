@@ -1,31 +1,73 @@
 import {
+  Anchor,
   ArrowDown,
+  BookOpen,
+  Camera,
   CalendarDays,
+  Compass,
   Flame,
+  Film,
+  ListChecks,
   Lock,
   MapPin,
+  Moon,
+  RefreshCcw,
+  Shell,
   Sparkles,
+  Sun,
+  TrendingUp,
+  Trophy,
+  Users,
   Waves,
+  Wind,
 } from "lucide-react";
+import Link from "next/link";
 import type { Badge } from "@/types/user";
 
 type BadgeCardProps = {
   badge: Badge;
+  href?: string;
 };
 
 const badgeIcons = {
+  anchor: Anchor,
   sparkles: Sparkles,
   "arrow-down": ArrowDown,
   waves: Waves,
+  "book-open": BookOpen,
+  camera: Camera,
   calendar: CalendarDays,
+  "calendar-days": CalendarDays,
+  "calendar-heart": CalendarDays,
+  compass: Compass,
+  film: Film,
+  "list-checks": ListChecks,
   "map-pin": MapPin,
+  map: MapPin,
+  moon: Moon,
+  "refresh-ccw": RefreshCcw,
+  shell: Shell,
+  storm: Waves,
+  sun: Sun,
+  trophy: Trophy,
+  "trending-up": TrendingUp,
+  users: Users,
   flame: Flame,
+  wind: Wind,
 };
 
 const rarityStyles = {
   base: {
     card: "border-tide-300/18 text-tide-300",
-    label: "base",
+    label: "comum",
+  },
+  common: {
+    card: "border-tide-300/18 text-tide-300",
+    label: "comum",
+  },
+  uncommon: {
+    card: "border-emerald-300/25 text-emerald-300",
+    label: "incomum",
   },
   rare: {
     card: "border-sun-400/25 text-sun-400",
@@ -38,6 +80,10 @@ const rarityStyles = {
   legendary: {
     card: "border-tide-300/35 text-tide-300",
     label: "lendária",
+  },
+  secret: {
+    card: "border-white/15 text-sand-100",
+    label: "secreta",
   },
 };
 
@@ -110,16 +156,16 @@ function BrazilianStormIcon() {
   );
 }
 
-export function BadgeCard({ badge }: BadgeCardProps) {
+export function BadgeCard({ badge, href }: BadgeCardProps) {
   const Icon = badgeIcons[badge.icon as keyof typeof badgeIcons] ?? Sparkles;
   const isZeroHoraCrew = badge.id === "zero-hora-crew";
   const isUaradei = badge.id === "uaradei";
   const isBrazilianStorm = badge.id === "brazilian-storm";
-  const rarity = rarityStyles[badge.rarity];
-
-  return (
+  const rarity = rarityStyles[badge.rarity] ?? rarityStyles.common;
+  const lockedSecret = badge.isSecret && !badge.unlocked;
+  const content = (
     <div
-      className={`interactive-card rounded-[18px] border p-5 ${
+      className={`interactive-card h-full rounded-[18px] border p-5 ${
         badge.unlocked
           ? isZeroHoraCrew
             ? "border-sun-400/35 bg-[linear-gradient(145deg,rgba(16,40,42,0.72),rgba(255,148,127,0.10))] text-sun-400"
@@ -127,7 +173,7 @@ export function BadgeCard({ badge }: BadgeCardProps) {
               ? "border-tide-300/35 bg-[radial-gradient(circle_at_30%_10%,rgba(246,200,95,0.16),transparent_32%),rgba(255,255,255,0.045)] text-tide-300"
               : isBrazilianStorm
                 ? "border-tide-300/45 bg-[linear-gradient(145deg,rgba(31,184,106,0.18),rgba(246,200,95,0.12),rgba(16,40,42,0.76))] text-tide-300"
-            : `${rarity.card} bg-white/[0.045]`
+                : `${rarity.card} bg-white/[0.045]`
           : "border-white/10 text-sand-300/38 opacity-65"
       }`}
     >
@@ -157,12 +203,23 @@ export function BadgeCard({ badge }: BadgeCardProps) {
           {rarity.label}
         </span>
       </div>
-      <h3 className="mt-5 text-lg font-black text-white">{badge.name}</h3>
-      <p className="mt-2 text-sm leading-6 text-sand-100/62">{badge.description}</p>
+      <h3 className="mt-5 text-lg font-black text-white">
+        {lockedSecret ? "Badge secreta" : badge.name}
+      </h3>
+      <p className="mt-2 text-sm leading-6 text-sand-100/62">
+        {lockedSecret
+          ? "Uma conquista escondida. Continue registrando suas sessions."
+          : badge.description}
+      </p>
+      {badge.category && !lockedSecret ? (
+        <p className="mt-3 text-xs font-black uppercase tracking-[0.14em] text-sand-300/48">
+          {badge.category}
+        </p>
+      ) : null}
       {badge.unlockRule ? (
         <div className="mt-4 rounded-2xl border border-white/10 bg-ink-950/36 px-3 py-2 text-xs leading-5 text-sand-100/58">
           <span className="font-black text-sand-100/78">Critério:</span>{" "}
-          {badge.unlockRule}
+          {lockedSecret ? "secreto por enquanto" : badge.unlockRule}
         </div>
       ) : null}
       {isZeroHoraCrew && badge.unlocked ? (
@@ -171,5 +228,15 @@ export function BadgeCard({ badge }: BadgeCardProps) {
         </div>
       ) : null}
     </div>
+  );
+
+  if (!href) {
+    return content;
+  }
+
+  return (
+    <Link href={href} className="block h-full">
+      {content}
+    </Link>
   );
 }

@@ -37,6 +37,7 @@ export async function POST(request: Request) {
     username: username || "surfista",
     name,
     email,
+    role: "USER",
     passwordHash: hashPassword(password),
     avatarUrl:
       "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=600&q=80",

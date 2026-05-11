@@ -3,9 +3,52 @@
     {
       "id": "user-001",
       "username": "rafa.drop",
-      "name": "Rafa Ramos",
+      "name": "João Ramos",
       "email": "demo@sessions.dev",
       "passwordHash": "9132f5bc1b32117e8a26cc7843b4cc54:86c880c318ca17129de9f26e2ba5fb22ab224902e38602cca82e2383aa1a165a",
+      "avatarUrl": "https://images.unsplash.com/photo-1551986782-d0169b3f8fa7?auto=format&fit=crop&w=600&q=80",
+      "level": 8,
+      "homeBeach": "Praia do Tombo",
+      "mainBoard": "5,5 Robalinho",
+      "favoriteBoard": "5,5 Robalinho",
+      "skillLevel": "iniciante",
+      "bio": "Ceo.",
+      "totalSessions": 24,
+      "streak": 4,
+      "xp": 1640,
+      "nextLevelXp": 2200,
+      "createdAt": "2026-05-08T07:36:08.616Z",
+      "updatedAt": "2026-05-08T17:06:21.288Z",
+      "role": "ADMIN"
+    },
+    {
+      "id": "user-a822edbe-812b-4502-809b-0948eedb2896",
+      "username": "joaovsr1020",
+      "name": "João Ramos",
+      "email": "joaovsr1020@gmail.com",
+      "passwordHash": "020e13829a20ac7ae3058fd69dc25827:016afb6196b5800ee8332b21d720a1a912f4616270a30aeb5b820654d5978466",
+      "avatarUrl": "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=600&q=80",
+      "level": 1,
+      "homeBeach": "Praia do Tombo",
+      "mainBoard": "5,5 Robalinho maligna.",
+      "favoriteBoard": "5,5 Robalinho maligna.",
+      "skillLevel": "iniciante",
+      "bio": "Ceo.",
+      "totalSessions": 0,
+      "streak": 0,
+      "xp": 0,
+      "nextLevelXp": 600,
+      "createdAt": "2026-05-08T07:53:24.404Z",
+      "updatedAt": "2026-05-08T16:10:25.795Z",
+      "role": "USER"
+    },
+    {
+      "id": "user-organizer-001",
+      "username": "tombo.organizer",
+      "name": "Organizador Tombo",
+      "email": "organizer@sessions.dev",
+      "role": "ORGANIZER",
+      "passwordHash": "eb38f41b829489799c2644a37970bb99:12887ca8981de4e3c73d1aa37ae88d411423f4d477d1675992dda0efb9317c9a",
       "avatarUrl": "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=600&q=80",
       "level": 8,
       "homeBeach": "Praia do Tombo",
@@ -17,28 +60,29 @@
       "streak": 4,
       "xp": 1640,
       "nextLevelXp": 2200,
-      "createdAt": "2026-05-08T07:36:08.616Z",
-      "updatedAt": "2026-05-08T07:36:08.616Z"
+      "createdAt": "2026-05-09T18:58:10.329Z",
+      "updatedAt": "2026-05-09T18:58:10.329Z"
     },
     {
-      "id": "user-a822edbe-812b-4502-809b-0948eedb2896",
-      "username": "joaovsr1020",
-      "name": "João Victor Santos Ramos",
-      "email": "joaovsr1020@gmail.com",
-      "passwordHash": "020e13829a20ac7ae3058fd69dc25827:016afb6196b5800ee8332b21d720a1a912f4616270a30aeb5b820654d5978466",
+      "id": "user-moderator-001",
+      "username": "mod.sessions",
+      "name": "Moderador Sessions",
+      "email": "moderator@sessions.dev",
+      "role": "MODERATOR",
+      "passwordHash": "ef5f7a68a40925bf8ce2c8cd53318733:fc42f0adeca3aeed1c2b482aa5fea7cd23779edc918f4ceec125034d40c962eb",
       "avatarUrl": "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=600&q=80",
-      "level": 1,
+      "level": 8,
       "homeBeach": "Praia do Tombo",
-      "mainBoard": "Prancha favorita",
-      "favoriteBoard": "Prancha favorita",
+      "mainBoard": "6'0 Fish Twin",
+      "favoriteBoard": "6'0 Fish Twin",
       "skillLevel": "iniciante",
-      "bio": "Surfista em evolução, registrando cada queda, remada e memória.",
-      "totalSessions": 0,
-      "streak": 0,
-      "xp": 0,
-      "nextLevelXp": 600,
-      "createdAt": "2026-05-08T07:53:24.404Z",
-      "updatedAt": "2026-05-08T07:53:24.404Z"
+      "bio": "Surfista iniciante, local do Tombo, caçador de mar limpo e aprendiz constante de presença dentro e fora d'água.",
+      "totalSessions": 24,
+      "streak": 4,
+      "xp": 1640,
+      "nextLevelXp": 2200,
+      "createdAt": "2026-05-09T18:58:10.329Z",
+      "updatedAt": "2026-05-09T18:58:10.329Z"
     }
   ],
   "sessions": [
@@ -71,7 +115,10 @@
       "isPublic": true,
       "country": "Brasil",
       "isCompetition": false,
-      "createdAt": "2026-05-08T07:55:07.480Z"
+      "createdAt": "2026-05-08T07:55:07.480Z",
+      "sessionType": "common",
+      "updatedAt": "2026-05-08T07:55:07.480Z",
+      "difficulty": "moderada"
     },
     {
       "id": "session-672d5f35-8285-4f35-bbab-1043fae9e16c",
@@ -102,73 +149,10 @@
       "isPublic": true,
       "country": "Brasil",
       "isCompetition": false,
-      "createdAt": "2026-05-08T07:55:06.978Z"
-    },
-    {
-      "id": "session-001",
-      "userId": "user-001",
-      "spotId": "praia-do-tombo",
-      "title": "Laboratório no mar pequeno",
-      "beach": "Praia do Tombo",
-      "date": "2026-05-05",
-      "waveSize": "0,5m a 1m",
-      "wind": "Terral fraco",
-      "windCondition": "Terral fraco",
-      "board": "6'0 Fish Twin",
-      "boardUsed": "6'0 Fish Twin",
-      "mood": "evolução",
-      "rating": 4,
-      "wavesCount": 11,
-      "wavesCaught": 11,
-      "description": "Entrei sem expectativa e saí com uma leitura melhor do pico. Treinei base, olhar na parede e paciência entre as séries.",
-      "notes": "Entrei sem expectativa e saí com uma leitura melhor do pico. Treinei base, olhar na parede e paciência entre as séries.",
-      "cinematicText": "Session curta, mas simbólica. O mar pequeno virou laboratório: poucas ondas, um drop quase encaixado e a sensação clara de que a evolução já começou.",
-      "photoUrl": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1400&q=80",
-      "mediaUrls": [
-        "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1400&q=80"
-      ],
-      "maneuvers": [
-        "drop",
-        "base",
-        "trim"
-      ],
-      "isPublic": true,
-      "country": "Brasil",
-      "isCompetition": false,
-      "createdAt": "2026-05-08T07:36:08.783Z"
-    },
-    {
-      "id": "session-002",
-      "userId": "user-001",
-      "spotId": "bostro",
-      "title": "Zero hora com linha limpa",
-      "beach": "Bostrô",
-      "date": "2026-05-03",
-      "waveSize": "1m",
-      "wind": "Sem vento cedo",
-      "windCondition": "Sem vento cedo",
-      "board": "5'10 Shortboard",
-      "boardUsed": "5'10 Shortboard",
-      "mood": "limpo",
-      "rating": 5,
-      "wavesCount": 17,
-      "wavesCaught": 17,
-      "description": "Acordar escuro valeu. Três amigos no pico vazio, parede abrindo para a esquerda e remada encaixada.",
-      "notes": "Acordar escuro valeu. Três amigos no pico vazio, parede abrindo para a esquerda e remada encaixada.",
-      "cinematicText": "O sol apareceu devagar, dourando a água enquanto a primeira esquerda abriu como convite. Foi uma daquelas manhãs que organizam a semana inteira.",
-      "photoUrl": "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=1400&q=80",
-      "mediaUrls": [
-        "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=1400&q=80"
-      ],
-      "maneuvers": [
-        "drop",
-        "base",
-        "trim"
-      ],
-      "isPublic": true,
-      "country": "Brasil",
-      "isCompetition": false,
-      "createdAt": "2026-05-08T07:36:08.783Z"
+      "createdAt": "2026-05-08T07:55:06.978Z",
+      "sessionType": "common",
+      "updatedAt": "2026-05-08T07:55:06.978Z",
+      "difficulty": "moderada"
     },
     {
       "id": "session-003",
@@ -201,40 +185,10 @@
       "isPublic": false,
       "country": "Brasil",
       "isCompetition": false,
-      "createdAt": "2026-05-08T07:36:08.783Z"
-    },
-    {
-      "id": "session-004",
-      "userId": "user-001",
-      "spotId": "praia-do-guaiuba",
-      "title": "Fim de tarde clássico",
-      "beach": "Praia do Guaiúba",
-      "date": "2026-04-26",
-      "waveSize": "0,8m",
-      "wind": "Nordeste leve",
-      "windCondition": "Nordeste leve",
-      "board": "6'0 Fish Twin",
-      "boardUsed": "6'0 Fish Twin",
-      "mood": "clássico",
-      "rating": 4,
-      "wavesCount": 14,
-      "wavesCaught": 14,
-      "description": "Mar democrático, luz bonita e crowd tranquilo. Não foi épico, foi melhor: constante, divertido e sem pressa.",
-      "notes": "Mar democrático, luz bonita e crowd tranquilo. Não foi épico, foi melhor: constante, divertido e sem pressa.",
-      "cinematicText": "A maré subiu junto com a calma. Cada onda parecia repetir uma frase simples: volta amanhã, continua.",
-      "photoUrl": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80",
-      "mediaUrls": [
-        "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80"
-      ],
-      "maneuvers": [
-        "drop",
-        "base",
-        "trim"
-      ],
-      "isPublic": true,
-      "country": "Brasil",
-      "isCompetition": false,
-      "createdAt": "2026-05-08T07:36:08.783Z"
+      "createdAt": "2026-05-08T07:36:08.783Z",
+      "sessionType": "common",
+      "updatedAt": "2026-05-08T07:36:08.783Z",
+      "difficulty": "moderada"
     },
     {
       "id": "session-005",
@@ -267,7 +221,160 @@
       "isPublic": true,
       "country": "Brasil",
       "isCompetition": false,
-      "createdAt": "2026-05-08T07:36:08.784Z"
+      "createdAt": "2026-05-08T07:36:08.784Z",
+      "sessionType": "common",
+      "updatedAt": "2026-05-08T07:36:08.784Z",
+      "difficulty": "moderada"
+    },
+    {
+      "id": "session-001",
+      "userId": "user-001",
+      "spotId": "praia-do-tombo",
+      "sessionType": "common",
+      "title": "Laboratório no mar pequeno",
+      "beach": "Praia do Tombo",
+      "date": "2026-05-05",
+      "waveSize": "0,5m a 1m",
+      "wind": "Terral fraco",
+      "windCondition": "Terral fraco",
+      "board": "6'0 Fish Twin",
+      "boardUsed": "6'0 Fish Twin",
+      "mood": "evolução",
+      "difficulty": "moderada",
+      "rating": 4,
+      "wavesCount": 11,
+      "wavesCaught": 11,
+      "description": "Entrei sem expectativa e saí com uma leitura melhor do pico. Treinei base, olhar na parede e paciência entre as séries.",
+      "notes": "Entrei sem expectativa e saí com uma leitura melhor do pico. Treinei base, olhar na parede e paciência entre as séries.",
+      "cinematicText": "Session curta, mas simbólica. O mar pequeno virou laboratório: poucas ondas, um drop quase encaixado e a sensação clara de que a evolução já começou.",
+      "photoUrl": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1400&q=80",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1400&q=80"
+      ],
+      "maneuvers": [
+        "drop",
+        "base",
+        "trim"
+      ],
+      "isPublic": true,
+      "country": "Brasil",
+      "isCompetition": false,
+      "createdAt": "2026-05-09T18:18:05.800Z",
+      "updatedAt": "2026-05-09T18:18:05.800Z"
+    },
+    {
+      "id": "session-002",
+      "userId": "user-001",
+      "spotId": "bostro",
+      "sessionType": "common",
+      "title": "Zero hora com linha limpa",
+      "beach": "Bostrô",
+      "date": "2026-05-03",
+      "waveSize": "1m",
+      "wind": "Sem vento cedo",
+      "windCondition": "Sem vento cedo",
+      "board": "5'10 Shortboard",
+      "boardUsed": "5'10 Shortboard",
+      "mood": "limpo",
+      "difficulty": "moderada",
+      "rating": 5,
+      "wavesCount": 17,
+      "wavesCaught": 17,
+      "description": "Acordar escuro valeu. Três amigos no pico vazio, parede abrindo para a esquerda e remada encaixada.",
+      "notes": "Acordar escuro valeu. Três amigos no pico vazio, parede abrindo para a esquerda e remada encaixada.",
+      "cinematicText": "O sol apareceu devagar, dourando a água enquanto a primeira esquerda abriu como convite. Foi uma daquelas manhãs que organizam a semana inteira.",
+      "photoUrl": "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=1400&q=80",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=1400&q=80"
+      ],
+      "maneuvers": [
+        "drop",
+        "base",
+        "trim"
+      ],
+      "isPublic": true,
+      "country": "Brasil",
+      "isCompetition": false,
+      "createdAt": "2026-05-09T18:18:05.801Z",
+      "updatedAt": "2026-05-09T18:18:05.801Z"
+    },
+    {
+      "id": "session-006",
+      "userId": "user-001",
+      "spotId": "praia-do-tombo",
+      "sessionType": "competition",
+      "title": "Primeira bateria no Tombo",
+      "beach": "Praia do Tombo",
+      "date": "2026-04-12",
+      "waveSize": "1m a 1,2m",
+      "wind": "Terral fraco",
+      "windCondition": "Terral fraco",
+      "board": "5'10 Shortboard",
+      "boardUsed": "5'10 Shortboard",
+      "mood": "mágico",
+      "difficulty": "moderada",
+      "rating": 5,
+      "wavesCount": 8,
+      "wavesCaught": 8,
+      "description": "Primeira session de campeonato registrada no Sessions. Entrei nervoso, ouvi a sirene, escolhi poucas ondas e saí com a sensação de ter atravessado uma fronteira pessoal.",
+      "notes": "Primeira session de campeonato registrada no Sessions. Entrei nervoso, ouvi a sirene, escolhi poucas ondas e saí com a sensação de ter atravessado uma fronteira pessoal.",
+      "cinematicText": "A bateria começou antes da confiança chegar. Mesmo assim, cada remada parecia dizer que competir também é aprender a sustentar presença quando todo mundo está olhando.",
+      "photoUrl": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1400&q=80",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1400&q=80"
+      ],
+      "maneuvers": [
+        "drop",
+        "base",
+        "trim"
+      ],
+      "competitionId": "desafio-local-tombo",
+      "competitionCategory": "Iniciante",
+      "competitionResult": "semifinal",
+      "competitionRound": "Round 2",
+      "competitionScore": "8.40",
+      "competitionFeeling": "Coração acelerado, respiração curta e aquela mistura de medo bom com vontade de representar o pico.",
+      "isPublic": true,
+      "country": "Brasil",
+      "isCompetition": true,
+      "createdAt": "2026-05-09T18:18:05.801Z",
+      "updatedAt": "2026-05-09T18:18:05.801Z"
+    },
+    {
+      "id": "session-004",
+      "userId": "user-001",
+      "spotId": "praia-do-guaiuba",
+      "sessionType": "common",
+      "title": "Fim de tarde clássico",
+      "beach": "Praia do Guaiúba",
+      "date": "2026-04-26",
+      "waveSize": "0,8m",
+      "wind": "Nordeste leve",
+      "windCondition": "Nordeste leve",
+      "board": "6'0 Fish Twin",
+      "boardUsed": "6'0 Fish Twin",
+      "mood": "clássico",
+      "difficulty": "moderada",
+      "rating": 4,
+      "wavesCount": 14,
+      "wavesCaught": 14,
+      "description": "Mar democrático, luz bonita e crowd tranquilo. Não foi épico, foi melhor: constante, divertido e sem pressa.",
+      "notes": "Mar democrático, luz bonita e crowd tranquilo. Não foi épico, foi melhor: constante, divertido e sem pressa.",
+      "cinematicText": "A maré subiu junto com a calma. Cada onda parecia repetir uma frase simples: volta amanhã, continua.",
+      "photoUrl": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80"
+      ],
+      "maneuvers": [
+        "drop",
+        "base",
+        "trim"
+      ],
+      "isPublic": true,
+      "country": "Brasil",
+      "isCompetition": false,
+      "createdAt": "2026-05-09T18:18:05.801Z",
+      "updatedAt": "2026-05-09T18:18:05.801Z"
     }
   ],
   "badges": [
@@ -276,16 +383,24 @@
       "name": "Primeira Session",
       "description": "Registrou a primeira ida ao mar.",
       "icon": "sparkles",
-      "rarity": "base",
-      "unlockRule": "Registrar a primeira session."
+      "rarity": "common",
+      "unlockRule": "Registrar a primeira session.",
+      "category": "especial",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
     },
     {
       "id": "primeiro-drop",
       "name": "Primeiro Drop",
       "description": "Comprometeu com a parede e foi.",
       "icon": "arrow-down",
-      "rarity": "base",
-      "unlockRule": "Registrar uma session com pelo menos uma onda pega."
+      "rarity": "common",
+      "unlockRule": "Registrar uma session com pelo menos uma onda pega.",
+      "category": "especial",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
     },
     {
       "id": "primeira-onda-em-pe",
@@ -293,23 +408,35 @@
       "description": "Sentiu a prancha correr de verdade.",
       "icon": "waves",
       "rarity": "rare",
-      "unlockRule": "Registrar uma session com relato de evolução."
+      "unlockRule": "Registrar uma session com relato de evolução.",
+      "category": "evolução",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
     },
     {
       "id": "zero-hora-crew",
       "name": "ZeroHoraCrew",
       "description": "Pra quem entra no mar antes do mundo acordar.",
       "icon": "zero-hora-crew",
-      "rarity": "rare",
-      "unlockRule": "Registrar uma session de madrugada ou com a crew antes do amanhecer."
+      "rarity": "uncommon",
+      "unlockRule": "Registrar uma session de madrugada ou com a crew antes do amanhecer.",
+      "category": "horário",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
     },
     {
       "id": "uaradei",
       "name": "UARADEI",
       "description": "Badge em homenagem a um canal de surf do YouTube que inspira a ser um ser humano e um surfista melhor.",
       "icon": "uaradei",
-      "rarity": "rare",
-      "unlockRule": "Registrar uma reflexão pessoal profunda ou completar 7 sessions com relato emocional."
+      "rarity": "epic",
+      "unlockRule": "Conquista especial concedida por evolução pessoal, relato profundo ou marco definido pela equipe.",
+      "category": "especial",
+      "isSecret": false,
+      "isAutomatic": false,
+      "isActive": true
     },
     {
       "id": "7-dias-surfando",
@@ -317,7 +444,11 @@
       "description": "Uma semana de consistência no sal.",
       "icon": "calendar",
       "rarity": "epic",
-      "unlockRule": "Registrar 7 sessions."
+      "unlockRule": "Registrar 7 sessions.",
+      "category": "especial",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
     },
     {
       "id": "novo-pico",
@@ -325,7 +456,11 @@
       "description": "Explorou uma praia fora da rotina.",
       "icon": "map-pin",
       "rarity": "rare",
-      "unlockRule": "Registrar uma session em um pico novo."
+      "unlockRule": "Registrar uma session em um pico novo.",
+      "category": "especial",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
     },
     {
       "id": "consistencia-brutal",
@@ -333,7 +468,11 @@
       "description": "Transformou vontade em ritmo.",
       "icon": "flame",
       "rarity": "epic",
-      "unlockRule": "Manter uma sequência consistente de sessions registradas."
+      "unlockRule": "Manter uma sequência consistente de sessions registradas.",
+      "category": "especial",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
     },
     {
       "id": "brazilian-storm",
@@ -341,7 +480,371 @@
       "description": "Homenagem aos pro surfers brasileiros e à força do surf brasileiro no mundo.",
       "icon": "brazilian-storm",
       "rarity": "legendary",
-      "unlockRule": "Registrar uma session fora do Brasil ou uma session vinculada a campeonato local."
+      "unlockRule": "Registrar uma session de campeonato internacional, subir no pódio ou participar de evento de alto prestígio.",
+      "category": "circuitos",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
+    },
+    {
+      "id": "local-do-tombo",
+      "name": "Local do Tombo",
+      "description": "O Tombo começou a reconhecer sua remada.",
+      "icon": "map-pin",
+      "rarity": "rare",
+      "unlockRule": "Registrar 3 sessions na Praia do Tombo.",
+      "category": "especial",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
+    },
+    {
+      "id": "asturias-soul",
+      "name": "Astúrias Soul",
+      "description": "Memória afetiva, mar bonito e presença nas Astúrias.",
+      "icon": "waves",
+      "rarity": "rare",
+      "unlockRule": "Registrar 2 sessions na Praia das Astúrias.",
+      "category": "especial",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
+    },
+    {
+      "id": "consistencia",
+      "name": "Consistência",
+      "description": "Dias seguidos no sal, sem romantizar desculpa.",
+      "icon": "calendar",
+      "rarity": "epic",
+      "unlockRule": "Registrar sessions em dias consecutivos.",
+      "category": "especial",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
+    },
+    {
+      "id": "alma-salgada",
+      "name": "Alma Salgada",
+      "description": "A quantidade virou identidade.",
+      "icon": "flame",
+      "rarity": "epic",
+      "unlockRule": "Registrar 15 sessions no total.",
+      "category": "especial",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true
+    },
+    {
+      "id": "primeira-remada",
+      "name": "Primeira Remada",
+      "description": "Sua primeira memória registrada no Sessions.",
+      "icon": "sparkles",
+      "rarity": "common",
+      "category": "frequência",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar a primeira session."
+    },
+    {
+      "id": "voltou-pro-mar",
+      "name": "Voltou Pro Mar",
+      "description": "Três registros para mostrar que a rotina começou.",
+      "icon": "waves",
+      "rarity": "common",
+      "category": "frequência",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar 3 sessions."
+    },
+    {
+      "id": "diario-salgado",
+      "name": "Diário Salgado",
+      "description": "Cinco dias no diário, cinco marcas no sal.",
+      "icon": "book-open",
+      "rarity": "common",
+      "category": "frequência",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar 5 sessions."
+    },
+    {
+      "id": "queda-registrada",
+      "name": "Queda Registrada",
+      "description": "Uma session completa, com dados e relato.",
+      "icon": "list-checks",
+      "rarity": "common",
+      "category": "evolução",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Preencher os campos principais de uma session."
+    },
+    {
+      "id": "foto-na-session",
+      "name": "Foto Na Session",
+      "description": "Uma imagem para lembrar o mar daquele dia.",
+      "icon": "camera",
+      "rarity": "common",
+      "category": "evolução",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Adicionar imagem a uma session."
+    },
+    {
+      "id": "alma-asturias",
+      "name": "Alma Astúrias",
+      "description": "Presença repetida em um pico cheio de memória.",
+      "icon": "waves",
+      "rarity": "uncommon",
+      "category": "praia",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar 5 sessions na Praia das Astúrias."
+    },
+    {
+      "id": "remada-constante",
+      "name": "Remada Constante",
+      "description": "Três dias diferentes no mar dentro da mesma semana.",
+      "icon": "calendar",
+      "rarity": "uncommon",
+      "category": "frequência",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar sessions em 3 dias diferentes na mesma semana."
+    },
+    {
+      "id": "parceiro-de-queda",
+      "name": "Parceiro De Queda",
+      "description": "Você começou a aparecer nas crews.",
+      "icon": "users",
+      "rarity": "uncommon",
+      "category": "comunidade",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Confirmar presença em 3 Crew Sessions."
+    },
+    {
+      "id": "semana-no-mar",
+      "name": "Semana No Mar",
+      "description": "Sete dias seguidos registrando o chamado do oceano.",
+      "icon": "calendar-days",
+      "rarity": "rare",
+      "category": "frequência",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar 7 dias seguidos de sessions."
+    },
+    {
+      "id": "cacador-de-pico",
+      "name": "Caçador De Pico",
+      "description": "Cinco praias diferentes no seu mapa pessoal.",
+      "icon": "compass",
+      "rarity": "rare",
+      "category": "exploração",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar sessions em 5 praias diferentes."
+    },
+    {
+      "id": "mar-mexido",
+      "name": "Mar Mexido",
+      "description": "Você registrou um dia mais pesado e ficou para contar.",
+      "icon": "wind",
+      "rarity": "rare",
+      "category": "evolução",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar session difícil, casca grossa ou com mood pesado."
+    },
+    {
+      "id": "filmou-a-queda",
+      "name": "Filmou A Queda",
+      "description": "Uma session com mídia entrou para o diário.",
+      "icon": "film",
+      "rarity": "rare",
+      "category": "evolução",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar session com mídia."
+    },
+    {
+      "id": "crew-de-respeito",
+      "name": "Crew De Respeito",
+      "description": "Uma Crew cheia de presença confirmada.",
+      "icon": "users",
+      "rarity": "rare",
+      "category": "comunidade",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Criar uma Crew com pelo menos 5 participantes confirmados."
+    },
+    {
+      "id": "trinta-dias-no-mar",
+      "name": "Trinta Dias No Mar",
+      "description": "Um mês inteiro com o surf no centro da rotina.",
+      "icon": "flame",
+      "rarity": "epic",
+      "category": "frequência",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar 30 sessions em um intervalo de 30 dias."
+    },
+    {
+      "id": "mapa-vivo",
+      "name": "Mapa Vivo",
+      "description": "Dez spots diferentes na sua história.",
+      "icon": "map",
+      "rarity": "epic",
+      "category": "exploração",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar sessions em 10 spots diferentes."
+    },
+    {
+      "id": "evolucao-visivel",
+      "name": "Evolução Visível",
+      "description": "Dez relatos completos mostrando mudança real.",
+      "icon": "trending-up",
+      "rarity": "epic",
+      "category": "evolução",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar 10 sessions com relato completo e autoavaliação."
+    },
+    {
+      "id": "alma-de-local",
+      "name": "Alma De Local",
+      "description": "Cinquenta memórias no mesmo pico.",
+      "icon": "anchor",
+      "rarity": "legendary",
+      "category": "praia",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar 50 sessions no mesmo pico."
+    },
+    {
+      "id": "ano-salgado",
+      "name": "Ano Salgado",
+      "description": "Doze meses com pelo menos uma queda registrada.",
+      "icon": "calendar-heart",
+      "rarity": "legendary",
+      "category": "frequência",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar sessions em 12 meses diferentes."
+    },
+    {
+      "id": "lenda-do-tombo",
+      "name": "Lenda Do Tombo",
+      "description": "Cem registros no Tombo. Isso vira história.",
+      "icon": "trophy",
+      "rarity": "legendary",
+      "category": "praia",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar 100 sessions na Praia do Tombo."
+    },
+    {
+      "id": "storm-chaser",
+      "name": "Storm Chaser",
+      "description": "Competição virou parte do seu caminho.",
+      "icon": "storm",
+      "rarity": "legendary",
+      "category": "circuitos",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Conquistar Brazilian Storm e participar de 3 circuitos aprovados."
+    },
+    {
+      "id": "mestre-da-consistencia",
+      "name": "Mestre Da Consistência",
+      "description": "Sessenta sessions registradas. Constância sem pressa.",
+      "icon": "flame",
+      "rarity": "legendary",
+      "category": "frequência",
+      "isSecret": false,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar 60 sessions no total."
+    },
+    {
+      "id": "silencio-antes-do-drop",
+      "name": "Silêncio Antes Do Drop",
+      "description": "Uma conquista secreta ligada ao silêncio da manhã.",
+      "icon": "moon",
+      "rarity": "secret",
+      "category": "horário",
+      "isSecret": true,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar uma session Zen antes das 6h."
+    },
+    {
+      "id": "ressaca-moral",
+      "name": "Ressaca Moral",
+      "description": "Uma conquista secreta sobre voltar melhor.",
+      "icon": "refresh-ccw",
+      "rarity": "secret",
+      "category": "evolução",
+      "isSecret": true,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar uma session frustrante e outra positiva em até 7 dias."
+    },
+    {
+      "id": "mar-chamou",
+      "name": "Mar Chamou",
+      "description": "Uma conquista secreta sobre ouvir o chamado.",
+      "icon": "shell",
+      "rarity": "secret",
+      "category": "especial",
+      "isSecret": true,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar uma session em um dia que quase ficou para depois."
+    },
+    {
+      "id": "pinguim-perdido",
+      "name": "Pinguim Perdido",
+      "description": "Uma conquista secreta de madrugada e parceria.",
+      "icon": "zero-hora-crew",
+      "rarity": "secret",
+      "category": "comunidade",
+      "isSecret": true,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Entrar em uma ZeroHoraCrew com participantes confirmados."
+    },
+    {
+      "id": "dia-classico",
+      "name": "Dia Clássico",
+      "description": "Uma conquista secreta para uma session perfeita.",
+      "icon": "sun",
+      "rarity": "secret",
+      "category": "especial",
+      "isSecret": true,
+      "isAutomatic": true,
+      "isActive": true,
+      "unlockRule": "Registrar session com nota máxima, relato completo e imagem."
     }
   ],
   "userBadges": [
@@ -392,6 +895,18 @@
       "userId": "user-a822edbe-812b-4502-809b-0948eedb2896",
       "badgeId": "primeiro-drop",
       "unlockedAt": "2026-05-08T07:55:06.978Z"
+    },
+    {
+      "id": "user-badge-34d77696-ff1e-48b7-85de-52d846583c2e",
+      "userId": "user-001",
+      "badgeId": "7-dias-surfando",
+      "unlockedAt": "2026-05-09T18:30:53.968Z"
+    },
+    {
+      "id": "user-badge-5a4e9de8-63d9-48c6-80ab-184b61f36ee1",
+      "userId": "user-001",
+      "badgeId": "local-do-tombo",
+      "unlockedAt": "2026-05-09T18:30:53.968Z"
     }
   ],
   "spots": [
@@ -403,7 +918,9 @@
       "difficulty": "intermediário",
       "bestConditions": "Swell de sul/sudeste, vento terral e mar alinhado.",
       "waveType": "Beach break potente",
-      "imageUrl": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1400&q=80"
+      "imageUrl": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1400&q=80",
+      "latitude": -24.013,
+      "longitude": -46.279
     },
     {
       "id": "bostro",
@@ -413,7 +930,9 @@
       "difficulty": "iniciante",
       "bestConditions": "Mar menor, pouco vento e janela de manhã.",
       "waveType": "Parede curta e treinável",
-      "imageUrl": "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=1400&q=80"
+      "imageUrl": "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=1400&q=80",
+      "latitude": -24.009,
+      "longitude": -46.281
     },
     {
       "id": "praia-das-asturias",
@@ -423,7 +942,9 @@
       "difficulty": "iniciante",
       "bestConditions": "Ondulação pequena a média, vento fraco e mar limpo.",
       "waveType": "Beach break amigável",
-      "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80"
+      "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80",
+      "latitude": -24.003,
+      "longitude": -46.267
     },
     {
       "id": "praia-do-guaiuba",
@@ -433,7 +954,9 @@
       "difficulty": "iniciante",
       "bestConditions": "Mar pequeno, vento leve e boa formação no inside.",
       "waveType": "Ondas macias",
-      "imageUrl": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80"
+      "imageUrl": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80",
+      "latitude": -24.017,
+      "longitude": -46.292
     },
     {
       "id": "praia-de-pernambuco",
@@ -443,7 +966,9 @@
       "difficulty": "intermediário",
       "bestConditions": "Swell de leste/sudeste e vento fraco.",
       "waveType": "Beach break com variação",
-      "imageUrl": "https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=1400&q=80"
+      "imageUrl": "https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=1400&q=80",
+      "latitude": -23.967,
+      "longitude": -46.186
     },
     {
       "id": "praia-do-eden",
@@ -453,7 +978,9 @@
       "difficulty": "avançado",
       "bestConditions": "Mar alinhado, pouca corrente e crowd controlado.",
       "waveType": "Onda curta e exigente",
-      "imageUrl": "https://images.unsplash.com/photo-1455264745730-cb3b76250ae8?auto=format&fit=crop&w=1400&q=80"
+      "imageUrl": "https://images.unsplash.com/photo-1455264745730-cb3b76250ae8?auto=format&fit=crop&w=1400&q=80",
+      "latitude": -23.977,
+      "longitude": -46.191
     },
     {
       "id": "praia-de-pitangueiras",
@@ -463,7 +990,9 @@
       "difficulty": "iniciante",
       "bestConditions": "Mar pequeno a médio e vento terral cedo.",
       "waveType": "Beach break urbano",
-      "imageUrl": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80"
+      "imageUrl": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80",
+      "latitude": -24.004,
+      "longitude": -46.256
     },
     {
       "id": "praia-da-enseada",
@@ -473,7 +1002,9 @@
       "difficulty": "iniciante",
       "bestConditions": "Swell pequeno, vento fraco e mar organizado.",
       "waveType": "Ondas longas e suaves",
-      "imageUrl": "https://images.unsplash.com/photo-1484821582734-6c6c9f99a672?auto=format&fit=crop&w=1400&q=80"
+      "imageUrl": "https://images.unsplash.com/photo-1484821582734-6c6c9f99a672?auto=format&fit=crop&w=1400&q=80",
+      "latitude": -23.982,
+      "longitude": -46.224
     }
   ],
   "authSessions": [
@@ -496,10 +1027,222 @@
       "expiresAt": "2026-06-07T07:55:47.082Z"
     },
     {
-      "token": "b98a8294122c6cb1217f0994f80d1d84f8bf40f793e83679a5dd53d6d5578378",
+      "token": "d5984ceb9d7ce43cfaf06ff53e981e08a705d177d6562cb6cf8d16335d74953f",
       "userId": "user-001",
-      "createdAt": "2026-05-08T08:06:42.612Z",
-      "expiresAt": "2026-06-07T08:06:42.612Z"
+      "createdAt": "2026-05-08T17:05:27.265Z",
+      "expiresAt": "2026-06-07T17:05:27.265Z"
+    },
+    {
+      "token": "0e43a82576f1d6be081cb76eedea81f94ddebb381f6c06c7a70a9ce87fbeb635",
+      "userId": "user-001",
+      "createdAt": "2026-05-09T18:30:48.862Z",
+      "expiresAt": "2026-06-08T18:30:48.862Z"
+    },
+    {
+      "token": "a0b47eb242fff162c62b68580a649265950b7602cddd60e62e0956596e73292e",
+      "userId": "user-organizer-001",
+      "createdAt": "2026-05-11T01:51:47.101Z",
+      "expiresAt": "2026-06-10T01:51:47.101Z"
+    },
+    {
+      "token": "5881cd40a3c180738793475234ab3834f2512c6ddab4477f83cf7b2eced607e5",
+      "userId": "user-moderator-001",
+      "createdAt": "2026-05-11T01:51:49.128Z",
+      "expiresAt": "2026-06-10T01:51:49.128Z"
     }
-  ]
+  ],
+  "competitions": [
+    {
+      "id": "circuito-tombo-open",
+      "name": "Tombo Open Sessions",
+      "startsAt": "2026-07-18T06:30:00.000Z",
+      "spotId": "praia-do-tombo",
+      "location": "Praia do Tombo",
+      "city": "Guarujá",
+      "state": "SP",
+      "country": "Brasil",
+      "description": "Circuito local com bateria curta, clima de comunidade e foco em evolução competitiva.",
+      "categories": [
+        "Iniciante",
+        "Open",
+        "Longboard"
+      ],
+      "officialUrl": "https://example.com/tombo-open",
+      "organizerName": "Associação Local do Tombo",
+      "organizerProfileUrl": "https://instagram.com/tomboopen",
+      "organizerContact": "organizador@tomboopen.com",
+      "reviewMessage": "Evento seed aprovado para demonstrar sessions de campeonato.",
+      "status": "approved",
+      "imageUrl": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1400&q=80",
+      "rules": "Obrigatório check-in 30 minutos antes da bateria. Prioridade por lycra.",
+      "estimatedParticipants": 48,
+      "prestige": "regional",
+      "createdByUserId": "user-001",
+      "createdAt": "2026-05-08T16:23:35.002Z",
+      "updatedAt": "2026-05-08T16:23:35.002Z"
+    },
+    {
+      "id": "asturias-expression",
+      "name": "Astúrias Expression Day",
+      "startsAt": "2026-08-02T10:00:00.000Z",
+      "spotId": "praia-das-asturias",
+      "location": "Praia das Astúrias",
+      "city": "Guarujá",
+      "state": "SP",
+      "country": "Brasil",
+      "description": "Encontro competitivo de manobras, filmagem e evolução para surfistas locais.",
+      "categories": [
+        "Expression Session",
+        "Feminino",
+        "Sub-18"
+      ],
+      "officialUrl": "https://example.com/asturias-expression",
+      "organizerName": "Astúrias Surf Crew",
+      "organizerProfileUrl": "https://instagram.com/asturiassurfcrew",
+      "organizerContact": "crew@asturias.example",
+      "reviewMessage": "Aguardando confirmação de alvará e equipe de apoio.",
+      "status": "pending_review",
+      "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80",
+      "rules": "Formato expression session. Pontua melhor onda e atitude no mar.",
+      "estimatedParticipants": 30,
+      "prestige": "local",
+      "createdByUserId": "user-001",
+      "createdAt": "2026-05-08T16:23:35.002Z",
+      "updatedAt": "2026-05-08T16:23:35.002Z"
+    },
+    {
+      "id": "desafio-local-tombo",
+      "name": "Desafio Local do Tombo",
+      "startsAt": "2026-04-12T07:00:00.000Z",
+      "spotId": "praia-do-tombo",
+      "location": "Praia do Tombo",
+      "city": "Guarujá",
+      "state": "SP",
+      "country": "Brasil",
+      "description": "Competição local já encerrada, usada para demonstrar histórico competitivo e sessions de bateria.",
+      "categories": [
+        "Iniciante",
+        "Open"
+      ],
+      "officialUrl": "https://example.com/desafio-local-tombo",
+      "organizerName": "Tombo Boardriders",
+      "organizerProfileUrl": "https://instagram.com/tomboboardriders",
+      "organizerContact": "contato@tomboboardriders.example",
+      "reviewMessage": "Evento verificado pela organização local.",
+      "status": "finished",
+      "imageUrl": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1400&q=80",
+      "rules": "Baterias de 15 minutos, soma das duas melhores ondas.",
+      "estimatedParticipants": 36,
+      "prestige": "local",
+      "createdByUserId": "user-001",
+      "createdAt": "2026-05-08T16:44:37.713Z",
+      "updatedAt": "2026-05-08T16:44:37.713Z"
+    }
+  ],
+  "crewSessions": [
+    {
+      "id": "crew-zero-hora-bostro",
+      "creatorUserId": "user-001",
+      "spotId": "bostro",
+      "date": "2026-06-06",
+      "time": "05:20",
+      "desiredLevel": "iniciante/intermediário",
+      "style": "dawn patrol",
+      "description": "Cair cedo, filmar algumas ondas e treinar base antes da praia encher.",
+      "maxPeople": 4,
+      "hasExtraBoard": false,
+      "acceptsBeginners": true,
+      "wantsFilmer": true,
+      "status": "open",
+      "interestedUserIds": [],
+      "confirmedUserIds": [
+        "user-001"
+      ],
+      "createdAt": "2026-05-08T16:23:35.002Z",
+      "updatedAt": "2026-05-08T16:23:35.002Z",
+      "title": "Crew no pico"
+    }
+  ],
+  "avatarOptions": [
+    {
+      "id": "mysterious-surfer",
+      "name": "Surfista misterioso",
+      "imageUrl": "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=600&q=80",
+      "description": "Silhueta discreta, vibe Sessions clássica."
+    },
+    {
+      "id": "penguin-surfer",
+      "name": "Pinguim surfista",
+      "imageUrl": "https://images.unsplash.com/photo-1551986782-d0169b3f8fa7?auto=format&fit=crop&w=600&q=80",
+      "description": "Amizade, madrugada e parceria no sal."
+    },
+    {
+      "id": "tribal-board",
+      "name": "Prancha tribal",
+      "imageUrl": "https://images.unsplash.com/photo-1530870110042-98b2cb110834?auto=format&fit=crop&w=600&q=80",
+      "description": "Objeto sagrado do ritual de cair no mar."
+    },
+    {
+      "id": "sunrise",
+      "name": "Sol nascente",
+      "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+      "description": "Para quem entra antes do mundo acordar."
+    },
+    {
+      "id": "night-sea",
+      "name": "Mar noturno",
+      "imageUrl": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=600&q=80",
+      "description": "Oceano escuro, elegante e cinematográfico."
+    },
+    {
+      "id": "brazilian-storm",
+      "name": "Brazilian Storm",
+      "imageUrl": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80",
+      "description": "Energia competitiva do surf brasileiro."
+    },
+    {
+      "id": "tombo-local",
+      "name": "Local do Tombo",
+      "imageUrl": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1400&q=80",
+      "description": "Raiz local, mar consistente e identidade."
+    },
+    {
+      "id": "zero-hora-crew",
+      "name": "ZeroHoraCrew",
+      "imageUrl": "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=1400&q=80",
+      "description": "Crew, madrugada e amizade no pico."
+    }
+  ],
+  "eventVerifications": [
+    {
+      "id": "verification-circuito-tombo-open",
+      "competitionId": "circuito-tombo-open",
+      "officialUrl": "https://example.com/tombo-open",
+      "organizerProfileUrl": "https://instagram.com/tomboopen",
+      "organizerContact": "organizador@tomboopen.com",
+      "reviewMessage": "Evento seed aprovado para demonstrar sessions de campeonato.",
+      "createdAt": "2026-05-08T16:23:35.002Z"
+    },
+    {
+      "id": "verification-asturias-expression",
+      "competitionId": "asturias-expression",
+      "officialUrl": "https://example.com/asturias-expression",
+      "organizerProfileUrl": "https://instagram.com/asturiassurfcrew",
+      "organizerContact": "crew@asturias.example",
+      "reviewMessage": "Aguardando confirmação de alvará e equipe de apoio.",
+      "createdAt": "2026-05-08T16:23:35.002Z"
+    },
+    {
+      "id": "verification-desafio-local-tombo",
+      "competitionId": "desafio-local-tombo",
+      "officialUrl": "https://example.com/desafio-local-tombo",
+      "organizerProfileUrl": "https://instagram.com/tomboboardriders",
+      "organizerContact": "contato@tomboboardriders.example",
+      "reviewMessage": "Evento verificado pela organização local.",
+      "createdAt": "2026-05-08T16:44:37.713Z"
+    }
+  ],
+  "crewMessages": [],
+  "circuitModerationLogs": [],
+  "media": []
 }

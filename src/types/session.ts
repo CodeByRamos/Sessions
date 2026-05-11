@@ -5,12 +5,25 @@ export type Mood =
   | "frustrante"
   | "limpo"
   | "calmo"
-  | "evolução";
+  | "evolução"
+  | "zen"
+  | "caótico"
+  | "glorioso"
+  | "cansativo"
+  | "zerohora"
+  | "alma lavada";
 
 export type Session = {
   id: string;
   userId: string;
   spotId?: string;
+  sessionType?: "common" | "competition" | "crew";
+  competitionId?: string;
+  competitionCategory?: string;
+  competitionResult?: string;
+  competitionRound?: string;
+  competitionScore?: string;
+  competitionFeeling?: string;
   title: string;
   beach: string;
   date: string;
@@ -20,6 +33,7 @@ export type Session = {
   board: string;
   boardUsed?: string;
   mood: Mood;
+  difficulty?: "leve" | "moderada" | "difícil" | "casca grossa";
   rating: number;
   wavesCount: number;
   wavesCaught?: number;
@@ -33,4 +47,5 @@ export type Session = {
   country?: string;
   isCompetition?: boolean;
   createdAt?: string;
+  updatedAt?: string;
 };

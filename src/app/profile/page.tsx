@@ -8,14 +8,14 @@ import { listSessionsByUser } from "@/services/sessions";
 import { requireUser } from "@/services/users";
 
 export default async function ProfilePage() {
-  const mockUser = await requireUser();
-  const sessions = await listSessionsByUser(mockUser.id);
-  const unlockedBadges = mockUser.badges.filter((badge) => badge.unlocked);
+  const user = await requireUser();
+  const sessions = await listSessionsByUser(user.id);
+  const unlockedBadges = user.badges.filter((badge) => badge.unlocked);
 
   return (
     <div className="page-shell space-y-8 fade-in">
-      <ProfileHeader user={mockUser} />
-      <ProfileStats user={mockUser} />
+      <ProfileHeader user={user} />
+      <ProfileStats user={user} />
 
       <section className="space-y-5">
         <SectionTitle
@@ -34,7 +34,7 @@ export default async function ProfilePage() {
           }
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {mockUser.badges.map((badge) => (
+          {user.badges.map((badge) => (
             <BadgeCard key={badge.id} badge={badge} />
           ))}
         </div>
@@ -60,11 +60,11 @@ export default async function ProfilePage() {
             <div className="mt-5 space-y-3 text-sm">
               <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.035] p-3">
                 <span className="text-sand-100/62">praia base</span>
-                <span className="font-black text-white">{mockUser.homeBeach}</span>
+                <span className="font-black text-white">{user.homeBeach}</span>
               </div>
               <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.035] p-3">
                 <span className="text-sand-100/62">prancha principal</span>
-                <span className="font-black text-white">{mockUser.mainBoard}</span>
+                <span className="font-black text-white">{user.mainBoard}</span>
               </div>
               <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.035] p-3">
                 <span className="text-sand-100/62">média de ondas</span>

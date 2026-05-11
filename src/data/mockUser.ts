@@ -64,6 +64,7 @@ export const mockUser: User = {
   id: "user-001",
   username: "rafa.drop",
   name: "Rafa Ramos",
+  role: "USER",
   avatarUrl:
     "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=600&q=80",
   level: 8,

@@ -46,25 +46,25 @@ export default async function HomePage() {
     getCurrentUser(),
     getFeaturedUser(),
   ]);
-  const mockUser = currentUser ?? featuredUser;
+  const dashboardUser = currentUser ?? featuredUser;
   const userSessions = currentUser
     ? await listSessionsByUser(currentUser.id)
     : publicSessions;
-  const mostSurfedSpot = await getMostSurfedSpot(mockUser.id);
+  const mostSurfedSpot = await getMostSurfedSpot(dashboardUser.id);
   const featuredSession = publicSessions[0];
   const latestSessions = userSessions.slice(0, 3);
-  const rareBadges = mockUser.badges.filter((badge) => badge.rarity !== "base");
-  const unlockedBadges = mockUser.badges.filter((badge) => badge.unlocked).length;
+  const rareBadges = dashboardUser.badges.filter((badge) => badge.rarity !== "base");
+  const unlockedBadges = dashboardUser.badges.filter((badge) => badge.unlocked).length;
   const heroMetrics = [
     {
       label: "sessions",
-      value: mockUser.totalSessions,
+      value: dashboardUser.totalSessions,
       helper: "registradas",
       icon: Waves,
     },
     {
       label: "streak",
-      value: `${mockUser.streak} dias`,
+      value: `${dashboardUser.streak} dias`,
       helper: "ritmo atual",
       icon: Flame,
     },
@@ -83,10 +83,10 @@ export default async function HomePage() {
           <div className="surface overflow-hidden rounded-[18px] p-5 sm:p-8">
             <div className="flex flex-wrap items-center gap-3">
               <span className="section-kicker">
-                {currentUser ? `Olá, ${mockUser.name}` : "surf journal social"}
+                {currentUser ? `Olá, ${dashboardUser.name}` : "surf journal social"}
               </span>
               <span className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-sand-100/62">
-                MVP 1
+                diário social de surf
               </span>
             </div>
             <h1 className="mt-5 max-w-3xl text-5xl font-black leading-none text-white sm:text-7xl">
@@ -196,7 +196,7 @@ export default async function HomePage() {
         <SectionTitle
           eyebrow="feed"
           title="Sessions recentes"
-          description="Registros públicos com imagem, mood, condição e narrativa em leitura rápida."
+          description="Acompanhe as sessions recentes da comunidade."
           actionLabel="ver feed completo"
           actionHref="/feed"
         />
@@ -205,8 +205,8 @@ export default async function HomePage() {
             <SessionCard
               key={session.id}
               session={session}
-              authorName={mockUser.name}
-              authorAvatarUrl={mockUser.avatarUrl}
+              authorName={dashboardUser.name}
+              authorAvatarUrl={dashboardUser.avatarUrl}
             />
           ))}
         </div>
@@ -261,7 +261,7 @@ export default async function HomePage() {
 
       <footer className="page-shell">
         <div className="soft-divider flex flex-col gap-2 pt-6 text-sm text-sand-100/52 sm:flex-row sm:items-center sm:justify-between">
-          <p>Sessions MVP 1</p>
+          <p>Sessions</p>
           <p>diário, evolução e cultura local</p>
         </div>
       </footer>
